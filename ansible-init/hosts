@@ -1,0 +1,16 @@
+[master]
+192.168.66.200
+
+[node]
+192.168.66.201
+192.168.66.202
+
+[multi:children]
+master
+node
+
+[multi:vars]
+ansible_ssh_user=vagrant
+ansible_ssh_port=22
+ansible_ssh_private_key_file=~/.ssh/insecure_private_key
+ansible_ssh_common_args='-o StrictHostKeyChecking=no -o CheckHostIP=no -o UserKnownHostsFile=/dev/null'

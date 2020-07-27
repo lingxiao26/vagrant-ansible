@@ -1,0 +1,16 @@
+StrictHostKeyChecking no
+CheckHostIP no
+UserKnownHostsFile=/dev/null
+
+Host master1
+    HostName ansible-master1
+    User root
+    Port 22
+Host node1
+    HostName ansible-node1
+    User root
+    Port 22
+Host node2
+    HostName ansible-node2
+    User root
+    Port 22

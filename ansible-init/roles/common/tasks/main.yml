@@ -1,0 +1,31 @@
+---
+
+- name: create ssh directory for root
+  file:
+    path: /root/.ssh/
+    state: directory
+    mode: 0700
+
+- name: copy ssh_public_key to root
+  copy:
+    src: "{{ item }}"
+    dest: /root/.ssh/
+  with_items:
+    - authorized_keys
+    - config
+
+- copy:
+    src: hosts
+    dest: /etc/hosts
+
+- name: install common utils
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+    - vim
+    - net-tools
+    - wget
+    - git
+    - util-linux-user

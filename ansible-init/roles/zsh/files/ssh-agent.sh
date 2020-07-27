@@ -1,0 +1,5 @@
+SSH_AUTH_SOCK=/tmp/ssh-renFTi4CE77v/agent.92434
+export SSH_AUTH_SOCK
+SSH_AGENT_PID=92435
+export SSH_AGENT_PID
+echo Agent pid 92435

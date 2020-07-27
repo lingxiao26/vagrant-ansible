@@ -1,0 +1,19 @@
+---
+- name: download node repo
+  get_url: 
+    url: https://rpm.nodesource.com/setup_10.x
+    dest: /tmp/node_install.sh
+
+- name: install nodejs repo
+  shell: 
+    cmd: /bin/bash /tmp/node_install.sh
+    # warn: no
+
+- name: install nodejs
+  yum:
+    name: nodejs
+    state: present
+
+- name: set npm registry
+  shell: 
+    cmd: npm config set -g registry https://registry.npm.taobao.org/

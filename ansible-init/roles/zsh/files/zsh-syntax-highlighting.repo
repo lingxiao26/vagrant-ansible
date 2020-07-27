@@ -1,0 +1,7 @@
+[shells_zsh-users_zsh-syntax-highlighting]
+name=zsh-syntax-highlighting (CentOS_8)
+type=rpm-md
+baseurl=https://download.opensuse.org/repositories/shells:/zsh-users:/zsh-syntax-highlighting/CentOS_8/
+gpgcheck=1
+gpgkey=https://download.opensuse.org/repositories/shells:/zsh-users:/zsh-syntax-highlighting/CentOS_8/repodata/repomd.xml.key
+enabled=1

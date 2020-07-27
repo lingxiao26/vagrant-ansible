@@ -1,0 +1,20 @@
+---
+- name: clone vimrc
+  git:
+    repo: https://github.com/amix/vimrc.git
+    dest: '~{{ username }}/.vim_runtime'
+    depth: 1
+  become: yes
+  become_user: '{{ username }}'
+  loop: "{{ users | map(attribute='username') | list }}"
+  loop_control:
+    loop_var: username
+
+- name: execute vimrc script
+  shell:
+    cmd: sh ~{{ username }}/.vim_runtime/install_awesome_vimrc.sh
+  become: yes
+  become_user: '{{ username }}'
+  loop: "{{ users | map(attribute='username') | list }}"
+  loop_control:
+    loop_var: username

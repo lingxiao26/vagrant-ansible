@@ -1,0 +1,14 @@
+---
+- hosts: all
+  gather_facts: true
+  become: true
+
+  roles:
+    - role: common
+    - role: nodejs
+    - role: zsh
+      tags:
+      - zsh
+    - role: vimrc
+      tags:
+      - vimrc

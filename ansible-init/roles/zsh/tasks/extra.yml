@@ -1,0 +1,46 @@
+---
+- name: create .zsh
+  file:
+    state: directory
+    dest: ~{{ username }}/.zsh
+  become: yes
+  become_user: "{{ username }}"
+  loop: "{{ users | map(attribute='username') | list }}"
+  loop_control:
+    loop_var: username
+
+- name: clone pure
+  git:
+    repo: https://github.com/sindresorhus/pure.git
+    dest: ~{{ username }}/.zsh/pure
+  become: yes
+  become_user: "{{ username }}"
+  loop: "{{ users | map(attribute='username') | list }}"
+  loop_control:
+    loop_var: username
+
+- name: install pure theme
+  npm:
+    name: pure-prompt
+    global: yes
+    state: present
+
+- name: copy zsh-syntax-highlighting repo file
+  copy:
+    src: zsh-syntax-highlighting.repo
+    dest: /etc/yum.repos.d/zsh-syntax-highlighting.repo
+
+- name: install zsh-syntax-highlighting
+  yum:
+    name: zsh-syntax-highlighting
+    state: present
+
+- name: copy ssh-agent.sh
+  copy:
+    src: ssh-agent.sh
+    dest: '~{{ username }}/ssh-agent.sh'
+  become: yes
+  become_user: '{{ username }}'
+  loop: "{{ users | map(attribute='username') | list }}"
+  loop_control:
+    loop_var: username
